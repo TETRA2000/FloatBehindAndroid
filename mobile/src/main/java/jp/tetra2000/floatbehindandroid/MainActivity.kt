@@ -11,8 +11,6 @@ import org.xwalk.core.XWalkPreferences
 import org.xwalk.core.XWalkView
 
 class MainActivity : AppCompatActivity() {
-    private var xWalkWebView: XWalkView? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -20,14 +18,14 @@ class MainActivity : AppCompatActivity() {
         XWalkPreferences.setValue(XWalkPreferences.ANIMATABLE_XWALK_VIEW, true)
 
         val rootLayout = findViewById(R.id.container) as ViewGroup
-        xWalkWebView = XWalkView(this)
-        xWalkWebView!!.setBackgroundColor(Color.TRANSPARENT)
-        xWalkWebView!!.load("https://crosswalk-project.org", null)
+        val xWalkWebView = XWalkView(this)
+        xWalkWebView.setBackgroundColor(Color.TRANSPARENT)
+        xWalkWebView.load("https://crosswalk-project.org", null)
         rootLayout.addView(xWalkWebView)
 
-        xWalkWebView!!.setBackgroundColor(Color.TRANSPARENT)
+        xWalkWebView.setBackgroundColor(Color.TRANSPARENT)
         val tuv = findXWalkTextureView(xWalkWebView)
-        tuv.setOpaque(false)
+        tuv?.setOpaque(false)
     }
 
     private fun findXWalkTextureView(group: ViewGroup): TextureView? {
