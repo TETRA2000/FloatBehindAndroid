@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 23
@@ -17,12 +18,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
 }
 
 repositories {
     maven {
         url 'https://download.01.org/crosswalk/releases/crosswalk/android/maven2'
     }
+    mavenCentral()
 }
 
 dependencies {
@@ -31,4 +36,14 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
 //    compile 'com.google.android.gms:play-services:8.4.0'
     compile 'org.xwalk:xwalk_core_library:16.45.421.19'
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}
+buildscript {
+    ext.kotlin_version = '1.0.1-2'
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
 }
