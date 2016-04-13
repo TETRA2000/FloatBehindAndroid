@@ -1,4 +1,6 @@
 language: android
+env:
+- GRADLE_OPTS="-Xmx512m -XX:MaxPermSize=512m"
 android:
   components:
     # Uncomment the lines below if you want to
